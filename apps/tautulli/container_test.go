@@ -3,10 +3,10 @@ package main
 import (
 	"testing"
 
-	"github.com/home-operations/containers/testhelpers"
+	"github.com/kalenarndt/containers/testhelpers"
 )
 
 func Test(t *testing.T) {
-	image := testhelpers.GetTestImage("ghcr.io/home-operations/tautulli:rolling")
+	image := testhelpers.GetTestImage("ghcr.io/kalenarndt/tautulli:rolling")
 	testhelpers.TestHTTPEndpoint(t, image, testhelpers.HTTPTestConfig{Port: "8181"}, nil)
 }

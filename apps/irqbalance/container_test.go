@@ -3,10 +3,10 @@ package main
 import (
 	"testing"
 
-	"github.com/home-operations/containers/testhelpers"
+	"github.com/kalenarndt/containers/testhelpers"
 )
 
 func Test(t *testing.T) {
-	image := testhelpers.GetTestImage("ghcr.io/home-operations/irqbalance:rolling")
+	image := testhelpers.GetTestImage("ghcr.io/kalenarndt/irqbalance:rolling")
 	testhelpers.TestFileExists(t, image, "/usr/sbin/irqbalance", nil)
 }

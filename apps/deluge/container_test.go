@@ -3,11 +3,11 @@ package main
 import (
 	"testing"
 
-	"github.com/home-operations/containers/testhelpers"
+	"github.com/kalenarndt/containers/testhelpers"
 )
 
 func Test(t *testing.T) {
-	image := testhelpers.GetTestImage("ghcr.io/home-operations/deluge:rolling")
+	image := testhelpers.GetTestImage("ghcr.io/kalenarndt/deluge:rolling")
 	t.Run("HTTP endpoint test", func(t *testing.T) {
 		testhelpers.TestHTTPEndpoint(t, image,
 			testhelpers.HTTPTestConfig{

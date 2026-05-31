@@ -1,7 +1,7 @@
 # Scrapling container image — design
 
 **Date:** 2026-05-30
-**Repo:** `home-operations/containers` fork (`kalenarndt`)
+**Repo:** `kalenarndt/containers` fork (`kalenarndt`)
 **Status:** Approved design, pending implementation plan
 
 ## Problem

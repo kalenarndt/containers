@@ -3,10 +3,10 @@ package main
 import (
 	"testing"
 
-	"github.com/home-operations/containers/testhelpers"
+	"github.com/kalenarndt/containers/testhelpers"
 )
 
 func Test(t *testing.T) {
-	image := testhelpers.GetTestImage("ghcr.io/home-operations/webhook:rolling")
+	image := testhelpers.GetTestImage("ghcr.io/kalenarndt/webhook:rolling")
 	testhelpers.TestHTTPEndpoint(t, image, testhelpers.HTTPTestConfig{Port: "9000"}, nil)
 }

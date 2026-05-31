@@ -1,16 +1,20 @@
 target "docker-metadata-action" {}
 
 variable "APP" {
-  default = "pyload-ng"
+  default = "agentmemory"
 }
 
 variable "VERSION" {
-  // renovate: datasource=pypi depName=pyload-ng versioning=pep440
-  default = "0.5.0b3.dev100"
+  default = "0.9.21"
 }
 
 variable "SOURCE" {
-  default = "https://github.com/pyload/pyload"
+  default = "https://github.com/rohitg00/agentmemory"
+}
+
+variable "III_VERSION" {
+  // renovate: datasource=docker depName=docker.io/iiidev/iii
+  default = "0.16.1"
 }
 
 group "default" {
@@ -21,6 +25,8 @@ target "image" {
   inherits = ["docker-metadata-action"]
   args = {
     VERSION = "${VERSION}"
+    AGENTMEMORY_VERSION = "${VERSION}"
+    III_VERSION = "${III_VERSION}"
   }
   labels = {
     "org.opencontainers.image.source" = "${SOURCE}"
