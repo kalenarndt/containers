@@ -232,20 +232,14 @@ jobs:
           DIGEST=$(docker buildx imagetools inspect "ghcr.io/${REPO_OWNER}/${APP}:${TAG}" --format '{{ json . }}' | jq --raw-output '.manifest.digest')
           echo "digest=${DIGEST}" >> "$GITHUB_OUTPUT"
 
-  attest:
-    name: Attest
+  sbom:
+    name: SBOM
     needs:
       - merge
     runs-on: ubuntu-latest
     permissions:
-      contents: read
-      packages: write
-      id-token: write
-      attestations: write
-    env:
-      APP: ${{ inputs.app }}
-      REPO_OWNER: ${{ github.repository_owner }}
-      DIGEST: ${{ needs.merge.outputs.digest }}
+      contents: write
+      packages: read
     steps:
       - name: Login to GitHub Container Registry
         uses: docker/login-action@4907a6ddec9925e35a0a9e82d7399ccc52663121 # v4.1.0
@@ -254,32 +248,22 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ github.token }}
 
+      # NOTE: Build-provenance attestation (actions/attest) was removed: it is not
+      # available for user-owned private repositories. Re-add it if this repo is made
+      # public or moved to an organization. The SBOM dependency snapshot works on
+      # private repos and is kept.
       - name: Upload Dependency Snapshot
         uses: anchore/sbom-action@e22c389904149dbc22b58101806040fa8d37a610 # v0.24.0
         with:
           dependency-snapshot: true
           image: ghcr.io/${{ github.repository_owner }}/${{ inputs.app }}@${{ needs.merge.outputs.digest }}
 
-      - name: Attestation
-        uses: actions/attest@59d89421af93a897026c735860bf21b6eb4f7b26 # v4.1.0
-        with:
-          push-to-registry: true
-          subject-name: ghcr.io/${{ github.repository_owner }}/${{ inputs.app }}
-          subject-digest: ${{ needs.merge.outputs.digest }}
-
-      - name: Verify Attestation
-        env:
-          GH_TOKEN: ${{ github.token }}
-          REPO: ${{ github.repository }}
-        run: |
-          gh attestation verify --repo "$REPO" "oci://ghcr.io/${REPO_OWNER}/${APP}@${DIGEST}"
-
   test:
     if: ${{ ! inputs.release }}
     name: Test
     needs:
       - merge
-      - attest
+      - sbom
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -322,7 +306,7 @@ jobs:
     name: Announce
     needs:
       - plan
-      - attest
+      - sbom
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -374,7 +358,7 @@ jobs:
       - plan
       - build
       - merge
-      - attest
+      - sbom
       - announce
     name: Notify
     runs-on: ubuntu-latest
