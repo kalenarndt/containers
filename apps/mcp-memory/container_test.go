@@ -1,17 +1,15 @@
 package main
 
 import (
-	"context"
 	"testing"
 
 	"github.com/kalenarndt/containers/testhelpers"
 )
 
 func Test(t *testing.T) {
-	ctx := context.Background()
-	image := testhelpers.GetTestImage("ghcr.io/bjw-s-labs/kepubify:rolling")
+	image := testhelpers.GetTestImage("ghcr.io/kalenarndt/mcp-memory:rolling")
 
 	t.Run("Check mcp-server-memory exists", func(t *testing.T) {
-		testhelpers.TestCommandSucceeds(t, ctx, image, nil, "/usr/local/bin/mcp-server-memory", "--version")
+		testhelpers.TestCommandSucceeds(t, image, nil, "/usr/local/bin/mcp-server-memory", "--version")
 	})
 }
