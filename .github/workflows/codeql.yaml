@@ -3,8 +3,9 @@
 name: CodeQL
 
 on:
-  schedule:
-    - cron: 30 1 * * *
+  # Scheduled scanning disabled: code scanning is not enabled on this private
+  # repo, so CodeQL analysis upload fails. Keep manual dispatch so it can be
+  # re-enabled once code scanning is available.
   workflow_dispatch:
 
 permissions:
