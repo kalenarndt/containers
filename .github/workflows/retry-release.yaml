@@ -30,6 +30,9 @@ jobs:
     if: ${{ needs.apps.outputs.apps != '[]' }}
     name: Retry Release
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: read
     needs:
       - apps
     strategy:
@@ -64,7 +67,7 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ steps.app-token.outputs.token }}
+          password: ${{ github.token }}
 
       - name: Get Bake Options
         uses: ./.github/actions/app-options
