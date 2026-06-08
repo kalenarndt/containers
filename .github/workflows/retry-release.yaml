@@ -59,6 +59,13 @@ jobs:
       - name: Install regctl
         uses: regclient/actions/regctl-installer@c70ad64367908075211b10dcd2ab9fad4bfa1816 # main
 
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@4907a6ddec9925e35a0a9e82d7399ccc52663121 # v4.1.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ steps.app-token.outputs.token }}
+
       - name: Get Bake Options
         uses: ./.github/actions/app-options
         id: app-options
