@@ -2,160 +2,54 @@
 
 ## Containers
 
-_An opinionated collection of container images_
+_Container images built for my homelab_
 
 </div>
 
 <div align="center">
 
-![GitHub Repo stars](https://img.shields.io/github/stars/kalenarndt/containers?style=for-the-badge)
-![GitHub forks](https://img.shields.io/github/forks/kalenarndt/containers?style=for-the-badge)
 ![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/kalenarndt/containers/release.yaml?style=for-the-badge&label=Release)
 
 </div>
 
-Welcome to our container images! If you are looking for a container, start by [browsing the GitHub Packages page for this repository's packages](https://github.com/orgs/kalenarndt/packages?repo_name=containers).
+This repository builds rootless, semantically versioned images for apps that publish no usable image of their own. Images are pushed to [GitHub Packages](https://github.com/kalenarndt?tab=packages&repo_name=containers).
 
-## Mission Statement
+## Images
 
-Our goal is to provide [semantically versioned](https://semver.org/), [rootless](https://rootlesscontaine.rs/), and [multi-architecture](https://www.docker.com/blog/multi-arch-build-and-images-the-simple-way/) containers for various applications.
+| Image | Upstream | Platforms |
+|-------|----------|-----------|
+| `ghcr.io/kalenarndt/sparkdash` | [MiaAI-Lab/sparkDash](https://github.com/MiaAI-Lab/sparkDash) | `linux/amd64` |
 
-We adhere to the [KISS principle](https://en.wikipedia.org/wiki/KISS_principle), logging to stdout, maintaining [one process per container](https://testdriven.io/tips/59de3279-4a2d-4556-9cd0-b444249ed31e/), avoiding tools like [s6-overlay](https://github.com/just-containers/s6-overlay), and building all images on top of [Alpine](https://hub.docker.com/_/alpine) or [Ubuntu](https://hub.docker.com/_/ubuntu).
+## Tags
 
-## Features
+Each release is tagged with the full upstream version (`2.32.0`), `major.minor`, `major` and `rolling`. Tags move; pin to the digest for immutability:
 
-### Tag Immutability
-
-Containers built here do not use immutable tags in the traditional sense, as seen with [linuxserver.io](https://fleet.linuxserver.io/) or [Bitnami](https://bitnami.com/stacks/containers). Instead, we insist on pinning to the `sha256` digest of the image. While this approach is less visually appealing, it ensures functionality and immutability.
-
-| Container | Immutable |
-|-----------------------|----|
-| `ghcr.io/kalenarndt/home-assistant:rolling` | ❌ |
-| `ghcr.io/kalenarndt/home-assistant:2025.5.1` | ❌ |
-| `ghcr.io/kalenarndt/home-assistant:rolling@sha256:8053...` | ✅ |
-| `ghcr.io/kalenarndt/home-assistant:2025.5.1@sha256:8053...` | ✅ |
-
-_If pinning an image to the `sha256` digest, tools like [Renovate](https://github.com/renovatebot/renovate) can update containers based on digest or version changes._
-
-### Rootless
-
-By default the majority of our containers run as a non-root user (`65534:65534`), you are able to change the user/group by updating your configuration files.
-
-#### Docker Compose
-
-```yaml
-services:
-  home-assistant:
-    image: ghcr.io/kalenarndt/home-assistant:2025.5.1
-    container_name: home-assistant
-    user: 1000:1000 # The data volume permissions must match this user:group
-    read_only: true # May require mounting in additional dirs as tmpfs
-    tmpfs:
-      - /tmp:rw
-    # ...
+```
+ghcr.io/kalenarndt/sparkdash:2.32.0@sha256:<digest>
 ```
 
-#### Kubernetes
+[Renovate](https://github.com/renovatebot/renovate) keeps both the upstream versions here and digest pins downstream up to date.
 
-```yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: home-assistant
-# ...
-spec:
-  # ...
-  template:
-    # ...
-    spec:
-      containers:
-        - name: home-assistant
-          image: ghcr.io/kalenarndt/home-assistant:2025.5.1
-          securityContext: # May require mounting in additional dirs as emptyDir
-            allowPrivilegeEscalation: false
-            capabilities:
-              drop:
-                - ALL
-            readOnlyRootFilesystem: true
-          volumeMounts:
-            - name: tmp
-              mountPath: /tmp
-      # ...
-      securityContext:
-        runAsUser: 1000
-        runAsGroup: 1000
-        fsGroup: 65534 # (Requires CSI support)
-        fsGroupChangePolicy: OnRootMismatch # (Requires CSI support)
-      volumes:
-        - name: tmp
-          emptyDir: {}
-      # ...
-# ...
-```
+## sparkdash
 
-### Passing Arguments to Applications
+A dashboard for NVIDIA DGX Spark machines. It polls each unit over SSH, so it runs anywhere that can reach them; it does not need to run on a Spark.
 
-Some applications only allow certain configurations via command-line arguments rather than environment variables. For such cases, refer to the Kubernetes documentation on [defining commands and arguments for a container](https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/). Then, specify the desired arguments as shown below:
+Differences from the upstream `docker compose` setup:
 
-```yaml
-args:
-  - --port
-  - "8080"
-```
+- Runs as `node` (`1000:1000`) and works with a read-only root filesystem.
+- Binds `0.0.0.0` by default. Set `SPARKDASH_TOKEN`: without it, anyone who can reach the port can change settings and power units off.
+- No host mounts or `privileged`. The "This host" unit is therefore unavailable; add every Spark as a remote unit.
+- On an empty `/app/config` volume, the entrypoint seeds upstream's default files. It never overwrites existing files.
+- Set `SSH_KEY_SOURCE` to a mounted private key. The entrypoint copies it to `~/.ssh/id_ed25519` with mode `0600`, so a group-readable Kubernetes secret mount works.
 
-### Configuration Volume
+Writable paths with `readOnlyRootFilesystem: true`:
 
-For applications requiring persistent configuration data, the configuration volume is hardcoded to `/config` within the container. In most cases, this path cannot be changed.
-
-### Verify Image Signature
-
-These container images are signed using the [attest-build-provenance](https://github.com/actions/attest-build-provenance) action.
-
-To verify that the image was built by GitHub CI, use the following command:
-
-```sh
-gh attestation verify --repo kalenarndt/containers oci://ghcr.io/kalenarndt/${APP}:${TAG}
-```
-
-or by using [cosign](https://github.com/sigstore/cosign):
-
-```sh
-cosign verify-attestation --new-bundle-format --type slsaprovenance1 \
-    --certificate-oidc-issuer "https://token.actions.githubusercontent.com" \
-    --certificate-identity-regexp "^https://github.com/kalenarndt/containers/.github/workflows/app-builder.yaml@refs/heads/main" \
-    ghcr.io/kalenarndt/${APP}:${TAG}
-```
-
-### Eschewed Features
-
-This repository does not support multiple "channels" for the same application. For example:
-
-- **Prowlarr**, **Radarr**, **Lidarr**, and **Sonarr** only publish the **develop** branch, not the **master** (stable) branch.
-- **qBittorrent** is only published with **LibTorrent 2.x**. See [this issue](https://github.com/kalenarndt/containers/issues/848) for more information.
-
-This approach ensures consistency and focuses on streamlined builds.
-
-## Contributing
-
-We encourage the use of official upstream container images whenever possible. However, contributing to this repository might make sense if:
-
-- The upstream application is **actively maintained**.
-- **And** one of the following applies:
-  - no official image exists.
-  - the official image does not support **multi-architecture builds**.
-  - the official image uses tools like **s6-overlay**, **gosu**, or other unconventional initialization mechanisms.
-  - does not tag releases.
-
-## Deprecations
-
-Containers in this repository may be deprecated for the following reasons:
-
-1. The upstream application is **no longer actively maintained**.
-2. An **official upstream container exists** that aligns with this repository's mission statement.
-3. The **maintenance burden** is unsustainable, such as frequent build failures or instability.
-
-**Note**: Deprecated containers will be announced with a release and remain available in the registry for 6 months before removal.
+| Path | Purpose |
+|------|---------|
+| `/app/config` | Unit registry, encrypted secrets and `.secrets-key`. Persist and back it up. |
+| `/home/node/.ssh` | SSH key and `known_hosts` |
+| `/tmp` | SSH control sockets |
 
 ## Credits
 
-This repository draws inspiration and ideas from the home-ops community, [hotio.dev](https://hotio.dev/), and [linuxserver.io](https://www.linuxserver.io/) contributors.
+Forked from [home-operations/containers](https://github.com/home-operations/containers), which provides the build and release tooling.
