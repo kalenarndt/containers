@@ -3,7 +3,6 @@
 name: Labeler
 
 on:
-  # zizmor: ignore[dangerous-triggers]
   pull_request_target:
   push:
     branches:
@@ -20,19 +19,19 @@ permissions:
 jobs:
   labeler:
     name: Labeler
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     permissions:
       contents: read
       issues: write
       pull-requests: write
     steps:
       - name: Checkout
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
 
       - name: Setup Mise
-        uses: jdx/mise-action@1648a7812b9aeae629881980618f079932869151 # v4.0.1
+        uses: jdx/mise-action@2d8d4cafcbd33be2ea37d2b6f5ad595363d1f1ca # v5.1.1
         with:
           experimental: true
           install_args: --locked
@@ -45,7 +44,7 @@ jobs:
       # dynamic set derived from the apps/ tree. --force makes it idempotent.
       - name: Ensure dynamic app/* labels exist
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
         run: |
           set -eu
@@ -55,7 +54,7 @@ jobs:
 
       - name: Labeler
         if: ${{ github.event_name == 'pull_request_target' }}
-        uses: actions/labeler@f27b608878404679385c85cfa523b85ccb86e213 # v6.1.0
+        uses: actions/labeler@bf12e9b00b37c5c0ca2b87b79b2daf7891dbda13 # v7.0.0
         with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          repo-token: ${{ github.token }}
           configuration-path: .github/labeler.yaml

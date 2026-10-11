@@ -3,12 +3,12 @@ package main
 import (
 	"testing"
 
-	"github.com/kalenarndt/containers/testhelpers"
+	helpers "github.com/kalenarndt/containers/tests"
 )
 
 func Test(t *testing.T) {
-	image := testhelpers.GetTestImage("ghcr.io/kalenarndt/sparkdash:rolling")
-	testhelpers.TestHTTPEndpoint(t, image, testhelpers.HTTPTestConfig{
+	image := helpers.GetTestImage("ghcr.io/kalenarndt/sparkdash:rolling")
+	helpers.RequireHTTPEndpoint(t, image, helpers.HTTPTestConfig{
 		Port:       "5555",
 		Path:       "/api/health",
 		StatusCode: 200,

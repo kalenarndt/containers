@@ -43,7 +43,7 @@ COPY --from=builder /app/server ./server
 COPY --from=builder /app/src/shared ./src/shared
 COPY --from=builder /app/src/components/ShowcasePage/showcasePrompts.ts ./src/components/ShowcasePage/showcasePrompts.ts
 COPY --from=builder /app/config ./defaults
-COPY --chmod=0755 entrypoint.sh /entrypoint.sh
+COPY . /
 
 RUN mkdir -p /app/config /home/node/.ssh && \
     chmod 0700 /home/node/.ssh && \

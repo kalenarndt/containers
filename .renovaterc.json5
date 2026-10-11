@@ -38,8 +38,15 @@
       description: ["Auto-merge App Updates"],
       matchFileNames: ["**/docker-bake.hcl"],
       automerge: true,
-      automergeType: "pr",
       ignoreTests: false,
+    },
+    {
+      description: [
+        "Exempt App Updates from prHourlyLimit and create them last, since they still add to the hourly PR count",
+      ],
+      matchFileNames: ["apps/**"],
+      prHourlyLimit: 0,
+      prPriority: -1,
     },
     {
       description: ["Allowed Node Version for sparkDash (matches upstream Dockerfile)"],

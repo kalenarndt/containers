@@ -16,8 +16,8 @@ This repository builds rootless, semantically versioned images for apps that pub
 
 ## Images
 
-| Image | Upstream | Platforms |
-|-------|----------|-----------|
+| Image                          | Upstream                                                      | Platforms     |
+| ------------------------------ | ------------------------------------------------------------- | ------------- |
 | `ghcr.io/kalenarndt/sparkdash` | [MiaAI-Lab/sparkDash](https://github.com/MiaAI-Lab/sparkDash) | `linux/amd64` |
 
 ## Tags
@@ -29,6 +29,14 @@ ghcr.io/kalenarndt/sparkdash:2.32.0@sha256:<digest>
 ```
 
 [Renovate](https://github.com/renovatebot/renovate) keeps both the upstream versions here and digest pins downstream up to date.
+
+## Verify an image
+
+Release builds carry a [build-provenance attestation](https://github.com/actions/attest). Check that an image came from this repo's CI:
+
+```sh
+gh attestation verify --repo kalenarndt/containers oci://ghcr.io/kalenarndt/sparkdash:2.32.0
+```
 
 ## sparkdash
 
@@ -44,11 +52,11 @@ Differences from the upstream `docker compose` setup:
 
 Writable paths with `readOnlyRootFilesystem: true`:
 
-| Path | Purpose |
-|------|---------|
-| `/app/config` | Unit registry, encrypted secrets and `.secrets-key`. Persist and back it up. |
-| `/home/node/.ssh` | SSH key and `known_hosts` |
-| `/tmp` | SSH control sockets |
+| Path              | Purpose                                                                      |
+| ----------------- | ---------------------------------------------------------------------------- |
+| `/app/config`     | Unit registry, encrypted secrets and `.secrets-key`. Persist and back it up. |
+| `/home/node/.ssh` | SSH key and `known_hosts`                                                    |
+| `/tmp`            | SSH control sockets                                                          |
 
 ## Credits
 
