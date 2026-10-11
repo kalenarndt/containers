@@ -1,0 +1,69 @@
+---
+# yaml-language-server: $schema=https://json.schemastore.org/github-action.json
+name: Changed Apps
+description: Returns a JSON list of app directories under apps/ changed by the triggering event
+
+outputs:
+  apps:
+    description: JSON array of changed app names, e.g. ["sparkdash"] or []
+    value: ${{ steps.apps.outputs.apps }}
+
+runs:
+  using: composite
+  steps:
+    - name: Changed Apps
+      id: apps
+      shell: bash
+      env:
+        EVENT: ${{ github.event_name }}
+        PR_BASE: ${{ github.event.pull_request.base.sha }}
+        PR_HEAD: ${{ github.event.pull_request.head.sha }}
+        MG_BASE: ${{ github.event.merge_group.base_sha }}
+        MG_HEAD: ${{ github.event.merge_group.head_sha }}
+        PUSH_BEFORE: ${{ github.event.before }}
+        PUSH_AFTER: ${{ github.sha }}
+      run: |
+        set -euo pipefail
+
+        # Needs a checkout with fetch-depth: 0 so both ends of the range exist.
+        has_commit() { [[ -n "${1}" ]] && git cat-file -e "${1}^{commit}" 2>/dev/null; }
+        empty_tree=$(git hash-object -t tree /dev/null)
+
+        case "${EVENT}" in
+            pull_request)
+                # Three dots: only what the PR changed since it left the base branch.
+                range=("${PR_BASE}...${PR_HEAD}"); head="${PR_HEAD}" ;;
+            merge_group)
+                range=("${MG_BASE}" "${MG_HEAD}"); head="${MG_HEAD}" ;;
+            push)
+                head="${PUSH_AFTER}"
+                if has_commit "${PUSH_BEFORE}"; then
+                    range=("${PUSH_BEFORE}" "${PUSH_AFTER}")
+                elif has_commit "${PUSH_AFTER}^"; then
+                    # New branch or force push: the old tip is gone, so use the parent.
+                    range=("${PUSH_AFTER}^" "${PUSH_AFTER}")
+                else
+                    # Root commit: everything is new.
+                    range=("${empty_tree}" "${PUSH_AFTER}")
+                fi ;;
+            *)
+                echo "apps=[]" >> "${GITHUB_OUTPUT}"
+                exit 0 ;;
+        esac
+
+        mapfile -t apps < <(
+            git diff --name-only "${range[@]}" -- apps/ \
+                | awk -F/ 'NF > 2 { print $2 }' \
+                | sort -u
+        )
+
+        # A deleted app has nothing left to build. Check the head commit, not
+        # the working tree, so the result does not depend on what is checked out.
+        existing=()
+        for app in "${apps[@]}"; do
+            git cat-file -e "${head}:apps/${app}" 2>/dev/null && existing+=("${app}")
+        done
+
+        json=$(jq --compact-output --null-input '$ARGS.positional' --args -- "${existing[@]}")
+        echo "apps=${json}" >> "${GITHUB_OUTPUT}"
+        echo "Changed apps: ${json}"

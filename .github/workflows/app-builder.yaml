@@ -18,8 +18,6 @@ on:
         required: false
       BOT_APP_PRIVATE_KEY:
         required: false
-      DISCORD_WEBHOOK:
-        required: false
 
 concurrency:
   group: ${{ inputs.release && format('app-builder-{0}', inputs.app) || format('app-builder-{0}-{1}', inputs.app, github.run_id) }}
@@ -331,42 +329,3 @@ jobs:
           **Source**: <${SOURCE}>
           EOF
           gh release create "$TAG" --notes-file release-notes.md
-
-  notify:
-    if: ${{ inputs.release && !cancelled() }}
-    needs:
-      - plan
-      - build
-      - merge
-      - attest
-      - announce
-    name: Notify
-    runs-on: ubuntu-26.04
-    steps:
-      - if: ${{ contains(needs.*.result, 'failure') }}
-        name: Checkout
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          persist-credentials: false
-
-      - if: ${{ contains(needs.*.result, 'failure') }}
-        name: Get App Options
-        uses: $/.github/actions/app-options
-        id: app-options
-        with:
-          app: ${{ inputs.app }}
-
-      - if: ${{ contains(needs.*.result, 'failure') }}
-        name: Send Discord Webhook
-        uses: sarisia/actions-status-discord@eb045afee445dc055c18d3d90bd0f244fd062708 # v1.16.0
-        with:
-          color: "0xFF0000"
-          description: |
-            App: `${{ inputs.app }}`
-            Version: `${{ steps.app-options.outputs.version }}`
-            [Rebuild](${{ github.server_url }}/${{ github.repository }}/actions/workflows/release.yaml)
-          nodetail: true
-          title: App build failed
-          username: GitHub Actions
-          url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-          webhook: ${{ secrets.DISCORD_WEBHOOK }}

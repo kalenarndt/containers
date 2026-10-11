@@ -9,8 +9,9 @@ config to load, no CLI, no server.
 
 This repo is a fork of [`home-operations/containers`](https://github.com/home-operations/containers).
 Keep its CI and tooling close to upstream so future resyncs stay cheap; the
-deliberate differences are amd64-only builds and `GITHUB_TOKEN` in place of
-upstream's GitHub App token.
+deliberate differences are amd64-only builds, the local `changed-apps` action
+(a plain `git diff`) in place of `tj-actions/changed-files`, and no Discord
+notifications.
 
 - PR titles follow [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/):
   `<type>[(scope)][!]: <description>`. Individual commit messages don't have

@@ -31,7 +31,7 @@ jobs:
     permissions:
       contents: read
     outputs:
-      changed-files: ${{ steps.changed-files.outputs.all_changed_files }}
+      changed-files: ${{ steps.changed-apps.outputs.apps }}
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -39,16 +39,9 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
-      - name: Get Changed Files
-        uses: tj-actions/changed-files@9426d40962ed5378910ee2e21d5f8c6fcbf2dd96 # v47.0.6
-        id: changed-files
-        with:
-          dir_names: true
-          dir_names_exclude_current_dir: true
-          dir_names_max_depth: 1
-          escape_json: false
-          json: true
-          path: apps
+      - name: Get Changed Apps
+        uses: $/.github/actions/changed-apps
+        id: changed-apps
 
   changed:
     if: ${{ needs.prepare.outputs.changed-files != '[]' || github.event_name == 'workflow_dispatch' }}
@@ -90,7 +83,6 @@ jobs:
     secrets:
       BOT_CLIENT_ID: ${{ secrets.BOT_CLIENT_ID }}
       BOT_APP_PRIVATE_KEY: ${{ secrets.BOT_APP_PRIVATE_KEY }}
-      DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
     strategy:
       matrix:
         app: ${{ fromJSON(needs.changed.outputs.apps) }}
