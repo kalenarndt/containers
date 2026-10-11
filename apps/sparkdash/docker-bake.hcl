@@ -1,16 +1,16 @@
 target "docker-metadata-action" {}
 
 variable "APP" {
-  default = "k8s-sidecar"
+  default = "sparkdash"
 }
 
 variable "VERSION" {
-  // renovate: datasource=docker depName=ghcr.io/kiwigrid/k8s-sidecar
-  default = "2.7.3"
+  // renovate: datasource=github-tags depName=MiaAI-Lab/sparkDash
+  default = "2.32.0"
 }
 
 variable "SOURCE" {
-  default = "https://github.com/kiwigrid/k8s-sidecar"
+  default = "https://github.com/MiaAI-Lab/sparkDash"
 }
 
 group "default" {
