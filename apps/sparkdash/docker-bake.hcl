@@ -4,9 +4,15 @@ variable "APP" {
   default = "sparkdash"
 }
 
+// Upstream publishes no releases and stopped tagging at v2.32.0, so VERSION
+// mirrors package.json at REVISION and is bumped by hand with it.
 variable "VERSION" {
-  // renovate: datasource=github-tags depName=MiaAI-Lab/sparkDash
-  default = "2.32.0"
+  default = "2.70.0"
+}
+
+variable "REVISION" {
+  // renovate: datasource=git-refs depName=https://github.com/MiaAI-Lab/sparkDash branch=main
+  default = "f8b1a4893e0117b82174182dcbdc8b58155c5f72"
 }
 
 variable "SOURCE" {
@@ -20,7 +26,8 @@ group "default" {
 target "image" {
   inherits = ["docker-metadata-action"]
   args = {
-    VERSION = "${VERSION}"
+    VERSION  = "${VERSION}"
+    REVISION = "${REVISION}"
   }
   labels = {
     "org.opencontainers.image.source" = "${SOURCE}"

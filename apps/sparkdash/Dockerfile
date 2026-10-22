@@ -1,9 +1,9 @@
 # syntax=docker/dockerfile:1
 
 FROM docker.io/library/node:22-bookworm-slim AS builder
-ARG VERSION
+ARG REVISION
 
-ADD --keep-git-dir=false https://github.com/MiaAI-Lab/sparkDash.git#v${VERSION} /app
+ADD --keep-git-dir=false https://github.com/MiaAI-Lab/sparkDash.git#${REVISION} /app
 
 WORKDIR /app
 
