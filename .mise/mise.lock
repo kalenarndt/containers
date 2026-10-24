@@ -50,50 +50,50 @@ url_api = "https://api.github.com/repos/rhysd/actionlint/releases/assets/3849249
 provenance = "github-attestations"
 
 [[tools.gh]]
-version = "2.102.0"
+version = "2.102.1"
 backend = "aqua:cli/cli"
-specifiers = ["2.102.0"]
+specifiers = ["2.102.1"]
 
 [tools.gh."platforms.linux-arm64"]
-checksum = "sha256:7862c86c72f43df3a2d93ddde6f473285b4e2af61b494849846827e513ef6484"
-url = "https://github.com/cli/cli/releases/download/v2.102.0/gh_2.102.0_linux_arm64.tar.gz"
-url_api = "https://api.github.com/repos/cli/cli/releases/assets/599854680"
+checksum = "sha256:5019b3cc6e8a03bb4d88600f8dbda2add8e6407705c159b0c63151036e77a1af"
+url = "https://github.com/cli/cli/releases/download/v2.102.1/gh_2.102.1_linux_arm64.tar.gz"
+url_api = "https://api.github.com/repos/cli/cli/releases/assets/660284837"
 provenance = "github-attestations"
 
 [tools.gh."platforms.linux-arm64-musl"]
-checksum = "sha256:7862c86c72f43df3a2d93ddde6f473285b4e2af61b494849846827e513ef6484"
-url = "https://github.com/cli/cli/releases/download/v2.102.0/gh_2.102.0_linux_arm64.tar.gz"
-url_api = "https://api.github.com/repos/cli/cli/releases/assets/599854680"
+checksum = "sha256:5019b3cc6e8a03bb4d88600f8dbda2add8e6407705c159b0c63151036e77a1af"
+url = "https://github.com/cli/cli/releases/download/v2.102.1/gh_2.102.1_linux_arm64.tar.gz"
+url_api = "https://api.github.com/repos/cli/cli/releases/assets/660284837"
 provenance = "github-attestations"
 
 [tools.gh."platforms.linux-x64"]
-checksum = "sha256:bb766f710eef8ede859c18578c72c327597cd4c8a85b06001b1f3843c6019386"
-url = "https://github.com/cli/cli/releases/download/v2.102.0/gh_2.102.0_linux_amd64.tar.gz"
-url_api = "https://api.github.com/repos/cli/cli/releases/assets/599854672"
+checksum = "sha256:77b9e297e94c50336823d0f84de7ef1be60cba704601fa0d98f129f47a94987b"
+url = "https://github.com/cli/cli/releases/download/v2.102.1/gh_2.102.1_linux_amd64.tar.gz"
+url_api = "https://api.github.com/repos/cli/cli/releases/assets/660284822"
 provenance = "github-attestations"
 
 [tools.gh."platforms.linux-x64-musl"]
-checksum = "sha256:bb766f710eef8ede859c18578c72c327597cd4c8a85b06001b1f3843c6019386"
-url = "https://github.com/cli/cli/releases/download/v2.102.0/gh_2.102.0_linux_amd64.tar.gz"
-url_api = "https://api.github.com/repos/cli/cli/releases/assets/599854672"
+checksum = "sha256:77b9e297e94c50336823d0f84de7ef1be60cba704601fa0d98f129f47a94987b"
+url = "https://github.com/cli/cli/releases/download/v2.102.1/gh_2.102.1_linux_amd64.tar.gz"
+url_api = "https://api.github.com/repos/cli/cli/releases/assets/660284822"
 provenance = "github-attestations"
 
 [tools.gh."platforms.macos-arm64"]
-checksum = "sha256:da922c20d1792e5b2cbf375593d7a658acf034c12c84e007e71c76ef959c337e"
-url = "https://github.com/cli/cli/releases/download/v2.102.0/gh_2.102.0_macOS_arm64.zip"
-url_api = "https://api.github.com/repos/cli/cli/releases/assets/599854720"
+checksum = "sha256:08bfef98b50c553df122bb34ee8dcf415cae7d3b108891488964a0df07aa2aeb"
+url = "https://github.com/cli/cli/releases/download/v2.102.1/gh_2.102.1_macOS_arm64.zip"
+url_api = "https://api.github.com/repos/cli/cli/releases/assets/660284918"
 provenance = "github-attestations"
 
 [tools.gh."platforms.macos-x64"]
-checksum = "sha256:b245f24eb2bf5f75b426b4c26da3651a107f8d5b6f4fddfbfccc5679041378b3"
-url = "https://github.com/cli/cli/releases/download/v2.102.0/gh_2.102.0_macOS_amd64.zip"
-url_api = "https://api.github.com/repos/cli/cli/releases/assets/599854716"
+checksum = "sha256:91c5fbd493274b545b03ef32a89c2a21238393c0c0b1108210967199b3230d9d"
+url = "https://github.com/cli/cli/releases/download/v2.102.1/gh_2.102.1_macOS_amd64.zip"
+url_api = "https://api.github.com/repos/cli/cli/releases/assets/660284911"
 provenance = "github-attestations"
 
 [tools.gh."platforms.windows-x64"]
-checksum = "sha256:ae64e556ecc240b200f7eba60d550e4bb60d78e860e69dd88c449405b86067f4"
-url = "https://github.com/cli/cli/releases/download/v2.102.0/gh_2.102.0_windows_amd64.zip"
-url_api = "https://api.github.com/repos/cli/cli/releases/assets/599854760"
+checksum = "sha256:843c0dc119f014d9458aeaff96c44c16fc4b8e556c1c4c5df9bab5ba002356e9"
+url = "https://github.com/cli/cli/releases/download/v2.102.1/gh_2.102.1_windows_amd64.zip"
+url_api = "https://api.github.com/repos/cli/cli/releases/assets/660284981"
 provenance = "github-attestations"
 
 [[tools."github:immanuwell/dockerfile-roast"]]
@@ -217,50 +217,50 @@ url_api = "https://api.github.com/repos/jqlang/jq/releases/assets/453012788"
 provenance = "github-attestations"
 
 [[tools.lefthook]]
-version = "2.2.0"
+version = "2.2.2"
 backend = "aqua:evilmartians/lefthook"
-specifiers = ["2.2.0"]
+specifiers = ["2.2.2"]
 
 [tools.lefthook."platforms.linux-arm64"]
-checksum = "sha256:97390b816df207d8ecbfe3714419778007ec02c680f131df6af2a3e7c337d9f5"
-url = "https://github.com/evilmartians/lefthook/releases/download/v2.2.0/lefthook_2.2.0_Linux_aarch64.gz"
-url_api = "https://api.github.com/repos/evilmartians/lefthook/releases/assets/619550824"
+checksum = "sha256:5e11944542e9889078d2300495882aa854d63854a664d09c5637df0bbc21c0e1"
+url = "https://github.com/evilmartians/lefthook/releases/download/v2.2.2/lefthook_2.2.2_Linux_aarch64.gz"
+url_api = "https://api.github.com/repos/evilmartians/lefthook/releases/assets/636518953"
 provenance = "github-attestations"
 
 [tools.lefthook."platforms.linux-arm64-musl"]
-checksum = "sha256:97390b816df207d8ecbfe3714419778007ec02c680f131df6af2a3e7c337d9f5"
-url = "https://github.com/evilmartians/lefthook/releases/download/v2.2.0/lefthook_2.2.0_Linux_aarch64.gz"
-url_api = "https://api.github.com/repos/evilmartians/lefthook/releases/assets/619550824"
+checksum = "sha256:5e11944542e9889078d2300495882aa854d63854a664d09c5637df0bbc21c0e1"
+url = "https://github.com/evilmartians/lefthook/releases/download/v2.2.2/lefthook_2.2.2_Linux_aarch64.gz"
+url_api = "https://api.github.com/repos/evilmartians/lefthook/releases/assets/636518953"
 provenance = "github-attestations"
 
 [tools.lefthook."platforms.linux-x64"]
-checksum = "sha256:93cdcec92f5918d067f566c4c82ce4334b396646ca70fbc4413918abfd26731f"
-url = "https://github.com/evilmartians/lefthook/releases/download/v2.2.0/lefthook_2.2.0_Linux_x86_64.gz"
-url_api = "https://api.github.com/repos/evilmartians/lefthook/releases/assets/619550696"
+checksum = "sha256:2b8d7fd52771f26d7a50260ef10cd6fe704d66f60102e566362b84da09884ab7"
+url = "https://github.com/evilmartians/lefthook/releases/download/v2.2.2/lefthook_2.2.2_Linux_x86_64.gz"
+url_api = "https://api.github.com/repos/evilmartians/lefthook/releases/assets/636518865"
 provenance = "github-attestations"
 
 [tools.lefthook."platforms.linux-x64-musl"]
-checksum = "sha256:93cdcec92f5918d067f566c4c82ce4334b396646ca70fbc4413918abfd26731f"
-url = "https://github.com/evilmartians/lefthook/releases/download/v2.2.0/lefthook_2.2.0_Linux_x86_64.gz"
-url_api = "https://api.github.com/repos/evilmartians/lefthook/releases/assets/619550696"
+checksum = "sha256:2b8d7fd52771f26d7a50260ef10cd6fe704d66f60102e566362b84da09884ab7"
+url = "https://github.com/evilmartians/lefthook/releases/download/v2.2.2/lefthook_2.2.2_Linux_x86_64.gz"
+url_api = "https://api.github.com/repos/evilmartians/lefthook/releases/assets/636518865"
 provenance = "github-attestations"
 
 [tools.lefthook."platforms.macos-arm64"]
-checksum = "sha256:41eceba8ceeb954e9dabfd10cd7a3caed16dd65448cacee7347c43d49ab07f23"
-url = "https://github.com/evilmartians/lefthook/releases/download/v2.2.0/lefthook_2.2.0_MacOS_arm64.gz"
-url_api = "https://api.github.com/repos/evilmartians/lefthook/releases/assets/619550718"
+checksum = "sha256:aef03ff2faaf87594068ec3ab794dcc1acd8d64f2aa3109785244c8359fbf15b"
+url = "https://github.com/evilmartians/lefthook/releases/download/v2.2.2/lefthook_2.2.2_MacOS_arm64.gz"
+url_api = "https://api.github.com/repos/evilmartians/lefthook/releases/assets/636518817"
 provenance = "github-attestations"
 
 [tools.lefthook."platforms.macos-x64"]
-checksum = "sha256:4d96b936c110ad8294108659a69bc835cfd1e0c9e6c1937654bc721564ab264b"
-url = "https://github.com/evilmartians/lefthook/releases/download/v2.2.0/lefthook_2.2.0_MacOS_x86_64.gz"
-url_api = "https://api.github.com/repos/evilmartians/lefthook/releases/assets/619550678"
+checksum = "sha256:016e560b0cc982f45df14c301509e05b5c4265655eea996495093cd0c632063a"
+url = "https://github.com/evilmartians/lefthook/releases/download/v2.2.2/lefthook_2.2.2_MacOS_x86_64.gz"
+url_api = "https://api.github.com/repos/evilmartians/lefthook/releases/assets/636518821"
 provenance = "github-attestations"
 
 [tools.lefthook."platforms.windows-x64"]
-checksum = "sha256:670583887a6af00eb4044dc1d8f40799f7ff12b14e2fb9e4ab6c1d1193a10357"
-url = "https://github.com/evilmartians/lefthook/releases/download/v2.2.0/lefthook_2.2.0_Windows_x86_64.gz"
-url_api = "https://api.github.com/repos/evilmartians/lefthook/releases/assets/619550757"
+checksum = "sha256:980579c96db6df0064f7d831dd409cb9eac1c993a13bc936574507e9e075be52"
+url = "https://github.com/evilmartians/lefthook/releases/download/v2.2.2/lefthook_2.2.2_Windows_x86_64.gz"
+url_api = "https://api.github.com/repos/evilmartians/lefthook/releases/assets/636518867"
 provenance = "github-attestations"
 
 [[tools.node]]
@@ -302,44 +302,51 @@ backend = "npm:oxfmt"
 specifiers = ["0.72.0"]
 
 [[tools.regctl]]
-version = "0.11.6"
+version = "0.11.7"
 backend = "aqua:regclient/regclient/regctl"
-specifiers = ["0.11.6"]
+specifiers = ["0.11.7"]
 
 [tools.regctl."platforms.linux-arm64"]
-checksum = "sha256:a9b71a3ee79b2d1dbbd7d51fd5e8fa214722c192864235d3d8764463c751a1ff"
-url = "https://github.com/regclient/regclient/releases/download/v0.11.6/regctl-linux-arm64"
-url_api = "https://api.github.com/repos/regclient/regclient/releases/assets/541343835"
+checksum = "sha256:9f349bab5c407ac04f3dabf99c7c7a6b0f9e9723c23f2775380e804d02c6dbb9"
+url = "https://github.com/regclient/regclient/releases/download/v0.11.7/regctl-linux-arm64"
+url_api = "https://api.github.com/repos/regclient/regclient/releases/assets/660897956"
+provenance = "cosign"
 
 [tools.regctl."platforms.linux-arm64-musl"]
-checksum = "sha256:a9b71a3ee79b2d1dbbd7d51fd5e8fa214722c192864235d3d8764463c751a1ff"
-url = "https://github.com/regclient/regclient/releases/download/v0.11.6/regctl-linux-arm64"
-url_api = "https://api.github.com/repos/regclient/regclient/releases/assets/541343835"
+checksum = "sha256:9f349bab5c407ac04f3dabf99c7c7a6b0f9e9723c23f2775380e804d02c6dbb9"
+url = "https://github.com/regclient/regclient/releases/download/v0.11.7/regctl-linux-arm64"
+url_api = "https://api.github.com/repos/regclient/regclient/releases/assets/660897956"
+provenance = "cosign"
 
 [tools.regctl."platforms.linux-x64"]
-checksum = "sha256:8e0e62a497fcdb8048d18aa927a139613176ba0531f412bc541044e28f9856bd"
-url = "https://github.com/regclient/regclient/releases/download/v0.11.6/regctl-linux-amd64"
-url_api = "https://api.github.com/repos/regclient/regclient/releases/assets/541343840"
+checksum = "sha256:3737fbbdd791e04e7a831640b681f3397a376498e80e2ad9b1b2d27296f239bc"
+url = "https://github.com/regclient/regclient/releases/download/v0.11.7/regctl-linux-amd64"
+url_api = "https://api.github.com/repos/regclient/regclient/releases/assets/660897960"
+provenance = "cosign"
 
 [tools.regctl."platforms.linux-x64-musl"]
-checksum = "sha256:8e0e62a497fcdb8048d18aa927a139613176ba0531f412bc541044e28f9856bd"
-url = "https://github.com/regclient/regclient/releases/download/v0.11.6/regctl-linux-amd64"
-url_api = "https://api.github.com/repos/regclient/regclient/releases/assets/541343840"
+checksum = "sha256:3737fbbdd791e04e7a831640b681f3397a376498e80e2ad9b1b2d27296f239bc"
+url = "https://github.com/regclient/regclient/releases/download/v0.11.7/regctl-linux-amd64"
+url_api = "https://api.github.com/repos/regclient/regclient/releases/assets/660897960"
+provenance = "cosign"
 
 [tools.regctl."platforms.macos-arm64"]
-checksum = "sha256:5b52b71861abc300ab513e87a4c3794cff6508035ac7f6b6bdfa1fa5688c0040"
-url = "https://github.com/regclient/regclient/releases/download/v0.11.6/regctl-darwin-arm64"
-url_api = "https://api.github.com/repos/regclient/regclient/releases/assets/541343870"
+checksum = "sha256:8ac077a1eeb834d3053714e86ccbd838d0da46567df8cd7c2695d1a19135bf60"
+url = "https://github.com/regclient/regclient/releases/download/v0.11.7/regctl-darwin-arm64"
+url_api = "https://api.github.com/repos/regclient/regclient/releases/assets/660897975"
+provenance = "cosign"
 
 [tools.regctl."platforms.macos-x64"]
-checksum = "sha256:d651381c58357e9b9446cec172761c7418b7621da57960d438175d8f4c5b479d"
-url = "https://github.com/regclient/regclient/releases/download/v0.11.6/regctl-darwin-amd64"
-url_api = "https://api.github.com/repos/regclient/regclient/releases/assets/541343858"
+checksum = "sha256:20029e87c51ce621275a9438cd441bd7ba5ebdda0c3b649c6c010d57fd99049d"
+url = "https://github.com/regclient/regclient/releases/download/v0.11.7/regctl-darwin-amd64"
+url_api = "https://api.github.com/repos/regclient/regclient/releases/assets/660897978"
+provenance = "cosign"
 
 [tools.regctl."platforms.windows-x64"]
-checksum = "sha256:02778e22c482d437e14fc06ee1e8504aa8f0f0d2ac266a89ab80c8a5503c8024"
-url = "https://github.com/regclient/regclient/releases/download/v0.11.6/regctl-windows-amd64.exe"
-url_api = "https://api.github.com/repos/regclient/regclient/releases/assets/541343819"
+checksum = "sha256:70f195ff4923082340738c796880864f66a296e6c5d3296bf743310653ad761f"
+url = "https://github.com/regclient/regclient/releases/download/v0.11.7/regctl-windows-amd64.exe"
+url_api = "https://api.github.com/repos/regclient/regclient/releases/assets/660897921"
+provenance = "cosign"
 
 [[tools.shellcheck]]
 version = "0.11.0"
@@ -429,42 +436,48 @@ url_api = "https://api.github.com/repos/mikefarah/yq/releases/assets/597222575"
 provenance = "cosign"
 
 [[tools.zizmor]]
-version = "1.30.1"
+version = "1.31.1"
 backend = "aqua:zizmorcore/zizmor"
-specifiers = ["1.30.1"]
+specifiers = ["1.31.1"]
 
 [tools.zizmor."platforms.linux-arm64"]
-checksum = "sha256:7ff1dce33bdd18fd2a4affe63bdd47efcccca97b2cec1c1863ec26e9e2647540"
-url = "https://github.com/zizmorcore/zizmor/releases/download/v1.30.1/zizmor-aarch64-unknown-linux-gnu.tar.gz"
-url_api = "https://api.github.com/repos/zizmorcore/zizmor/releases/assets/552067643"
+checksum = "sha256:37eebbd5762a44f262d94875431b14a6d2402991e90a685113ea97b8b41be833"
+url = "https://github.com/zizmorcore/zizmor/releases/download/v1.31.1/zizmor-aarch64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/zizmorcore/zizmor/releases/assets/645467282"
 provenance = "github-attestations"
 
 [tools.zizmor."platforms.linux-arm64-musl"]
+checksum = "sha256:37eebbd5762a44f262d94875431b14a6d2402991e90a685113ea97b8b41be833"
+url = "https://github.com/zizmorcore/zizmor/releases/download/v1.31.1/zizmor-aarch64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/zizmorcore/zizmor/releases/assets/645467282"
 provenance = "github-attestations"
 
 [tools.zizmor."platforms.linux-x64"]
-checksum = "sha256:e65324f4430c2717591937edcec90ccbefaf14c174f8ec9415e03ca875b46e1a"
-url = "https://github.com/zizmorcore/zizmor/releases/download/v1.30.1/zizmor-x86_64-unknown-linux-gnu.tar.gz"
-url_api = "https://api.github.com/repos/zizmorcore/zizmor/releases/assets/552067642"
+checksum = "sha256:d185f726bdaf92df78273217dfdd24ebcd6b0ef48cf3ce776ff5762b6e138c99"
+url = "https://github.com/zizmorcore/zizmor/releases/download/v1.31.1/zizmor-x86_64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/zizmorcore/zizmor/releases/assets/645467284"
 provenance = "github-attestations"
 
 [tools.zizmor."platforms.linux-x64-musl"]
+checksum = "sha256:d185f726bdaf92df78273217dfdd24ebcd6b0ef48cf3ce776ff5762b6e138c99"
+url = "https://github.com/zizmorcore/zizmor/releases/download/v1.31.1/zizmor-x86_64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/zizmorcore/zizmor/releases/assets/645467284"
 provenance = "github-attestations"
 
 [tools.zizmor."platforms.macos-arm64"]
-checksum = "sha256:e28d22b087f9ebb8d99da6e740d348c930f559961c7c3f12badda54f882195a2"
-url = "https://github.com/zizmorcore/zizmor/releases/download/v1.30.1/zizmor-aarch64-apple-darwin.tar.gz"
-url_api = "https://api.github.com/repos/zizmorcore/zizmor/releases/assets/552067640"
+checksum = "sha256:ad5aa633cd56215b11e6c51d51f90c7e6b22904a75047d1215abbd422f61d698"
+url = "https://github.com/zizmorcore/zizmor/releases/download/v1.31.1/zizmor-aarch64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/zizmorcore/zizmor/releases/assets/645467283"
 provenance = "github-attestations"
 
 [tools.zizmor."platforms.macos-x64"]
-checksum = "sha256:10e6b18b11ea07e515a16f0f0518c7b07527bc9977c1fd5698181ce7f3554202"
-url = "https://github.com/zizmorcore/zizmor/releases/download/v1.30.1/zizmor-x86_64-apple-darwin.tar.gz"
-url_api = "https://api.github.com/repos/zizmorcore/zizmor/releases/assets/552067641"
+checksum = "sha256:72ae63bb85b67229c06242f04195cb43927e9fab5f43803c6434dc701a517d61"
+url = "https://github.com/zizmorcore/zizmor/releases/download/v1.31.1/zizmor-x86_64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/zizmorcore/zizmor/releases/assets/645467287"
 provenance = "github-attestations"
 
 [tools.zizmor."platforms.windows-x64"]
-checksum = "sha256:b183b1e996eddfab9659f1e9b46e059f1ef1cf984a1f14e5da09f7876a4b3a1c"
-url = "https://github.com/zizmorcore/zizmor/releases/download/v1.30.1/zizmor-x86_64-pc-windows-msvc.zip"
-url_api = "https://api.github.com/repos/zizmorcore/zizmor/releases/assets/552067645"
+checksum = "sha256:4de30371c8a3b483aecbcf0dec1fd6a2b6aae65051ca226b4f6527baac6a8c7a"
+url = "https://github.com/zizmorcore/zizmor/releases/download/v1.31.1/zizmor-x86_64-pc-windows-msvc.zip"
+url_api = "https://api.github.com/repos/zizmorcore/zizmor/releases/assets/645467286"
 provenance = "github-attestations"
