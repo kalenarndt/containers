@@ -12,7 +12,7 @@ variable "VERSION" {
 
 variable "REVISION" {
   // renovate: datasource=git-refs depName=https://github.com/MiaAI-Lab/sparkDash branch=main
-  default = "f8b1a4893e0117b82174182dcbdc8b58155c5f72"
+  default = "2c736a7261ea2a589f256dc1b2fe133201cf0dce"
 }
 
 variable "SOURCE" {
